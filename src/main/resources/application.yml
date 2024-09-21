@@ -9,15 +9,13 @@ spring:
      max-file-size: 20MB
      max-request-size: 20MB  
 
-jpa:
-   database: POSTGRESQL 
-   datasource:
-     driverClassName: org.postgresql.Driver
-     url: jdbc:postgresql://localhost:5432/pictgram
-     username: ${psql.user}
-     password: ${psql.password}    
-
-
+  jpa:
+    database: POSTGRESQL 
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/pictgram
+    username: ${psql.user}
+    password: ${psql.password}    
 
 image:
   local: true
