@@ -102,6 +102,7 @@ public class TopicsController {
 
 				data.append(new String(Base64Utils.encode(os.toByteArray()), "ASCII"));
 				form.setImageData(data.toString());
+			} catch (IOException e) {
 			}
 		}
 
