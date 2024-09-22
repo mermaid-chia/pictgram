@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.context.Context;
 
 import com.example.pictgram.entity.Comment;
 import com.example.pictgram.entity.Favorite;
@@ -38,6 +39,7 @@ import com.example.pictgram.form.FavoriteForm;
 import com.example.pictgram.form.TopicForm;
 import com.example.pictgram.form.UserForm;
 import com.example.pictgram.repository.TopicRepository;
+import com.example.pictgram.service.SendMailService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -56,6 +58,9 @@ public class TopicsController {
 
 	@Value("${image.local:false}")
 	private String imageLocal;
+
+	@Autowired
+	private SendMailService sendMailService;
 
 	@GetMapping("/topics")
 	public String index(Principal principal, Model model) throws IOException {
@@ -189,6 +194,8 @@ public class TopicsController {
 		redirAttrs.addFlashAttribute("class", "alert-info");
 		redirAttrs.addFlashAttribute("message",
 				messageSource.getMessage("topics.create.flash.2", new String[] {}, locale));
+		Context context = new Context();
+		sendMailService.sendMail(context);
 
 		return "redirect:/topics";
 	}
