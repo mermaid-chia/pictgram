@@ -94,7 +94,10 @@ public class TopicsController {
 			TopicForm form = getTopic(user, entity);
 			list.add(form);
 		}
+
 		model.addAttribute("list", list);
+
+		model.addAttribute("hasFooter", true);
 
 		return "topics/index";
 	}
