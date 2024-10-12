@@ -25,6 +25,9 @@
     		}        
   		</script>
           <div class="container">
+          <div>
+			  <a th:href="@{/topics/topic.csv}">だうんろど</a>
+          </div>
                 <div class="row" th:each="topic : ${list}">
 					<a th:id="${topic.id}"></a>
                     <div class="col-md-6 mx-auto">
