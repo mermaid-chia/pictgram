@@ -3,6 +3,7 @@ package com.example.pictgram.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -47,11 +48,11 @@ public class Topic extends AbstractEntity implements Serializable {
 	@JoinColumn(name = "userId", insertable = false, updatable = false)
 	private User user;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "topicId", insertable = false, updatable = false)
 	private List<Favorite> favorites;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "topicId", insertable = false, updatable = false)
 	private List<Comment> comments;
 
