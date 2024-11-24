@@ -83,6 +83,7 @@ public class TopicsController {
 	@Autowired
 	private SendMailService sendMailService;
 
+	//登録用
 	@GetMapping("/topics")
 	public String index(@RequestParam(value = "description", required = false) String description, Principal principal,
 			Model model) throws IOException {
@@ -230,6 +231,13 @@ public class TopicsController {
 		//		sendMailService.sendMail(context);
 
 		return "redirect:/topics";
+	}
+
+	//削除用
+	@PostMapping("/topics/delete")
+	public String deleteTopic(@RequestParam("id") Long id) {
+		repository.deleteById(id); // ID に基づいて削除
+		return "redirect:/topics"; // 削除後、一覧ページにリダイレクト
 	}
 
 	private File saveImageLocal(MultipartFile image, Topic entity)
