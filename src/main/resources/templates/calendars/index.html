@@ -2,7 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
     <head>
         <title>Pictgram</title>
+   
+     
+             
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.9/index.global.min.js'></script>
+     </head>
      <script>
 
        document.addEventListener('DOMContentLoaded', function () {
@@ -15,13 +19,13 @@
            calendar.render();
          });
      </script>
-    </head>
-    
-    <body>
+     <body>
         <div layout:fragment="contents">
             <div id='calendar'></div>
-        </div>
-    </body>
+         </div>
+     </body>
+    
+   
     <html lang='en'>
   <head>
     <meta charset='utf-8' />

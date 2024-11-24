@@ -84,11 +84,16 @@ public class TopicsController {
 	private SendMailService sendMailService;
 
 	@GetMapping("/topics")
-	public String index(Principal principal, Model model) throws IOException {
+	public String index(@RequestParam(value = "description", required = false) String description, Principal principal,
+			Model model) throws IOException {
 		Authentication authentication = (Authentication) principal;
 		UserInf user = (UserInf) authentication.getPrincipal();
 
-		List<Topic> topics = repository.findAllByOrderByUpdatedAtDesc();
+		List<Topic> topics = repository.findByDescriptionContaining(description);
+		//検索処理でレコードが取れなかったら全件表示する
+		if (topics.isEmpty()) {
+			topics = repository.findAllByOrderByUpdatedAtDesc();
+		}
 		List<TopicForm> list = new ArrayList<>();
 		for (Topic entity : topics) {
 			TopicForm form = getTopic(user, entity);
